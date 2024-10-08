@@ -18,7 +18,7 @@ def dynamic_stop_loss(df, start_date, end_date, spread):
          # check if the date exist 
         if not (next_date in df["Dates"].values):
             print(f"Warning: {next_date} not found in data")
-            break  # 或者使用 continue 跳过当前循环
+            break  
         
         next_date_price = df.loc[df["Dates"] == next_date, "Price"].values[0]
 

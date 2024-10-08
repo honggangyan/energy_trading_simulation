@@ -146,3 +146,27 @@ def plot_all_procurement(df, procurement_results):
     # Show the plot
     plt.tight_layout()
     plt.show()
+
+def plot_simulations(df_simulations, simulations):
+    """
+    Plots the Monte Carlo simulated electricity price paths.
+    
+    Parameters:
+        df_simulations (pd.DataFrame): DataFrame containing the simulated price paths.
+        simulations (int): The number of simulations to display.
+    """
+    # Create the plot
+    plt.figure(figsize=(20, 6))
+    
+    # Plot each simulation
+    for i in range(simulations):
+        plt.plot(df_simulations.index, df_simulations.iloc[:, i], lw=1)
+        
+    # Set plot title and labels
+    plt.title(f'Monte Carlo Simulated Electricity Price Paths ({simulations} Simulations)')
+    plt.xlabel('Date')
+    plt.ylabel('Price (EUR/MWh)')
+    plt.grid(True)
+    
+    # Show the plot
+    plt.show()
