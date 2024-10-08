@@ -20,3 +20,4 @@ def cost_benchmark(trend, df, procurement_results):
     print(f"{trend} - Averge_price: {average_price}, Average_procurement_price: {average_procurement_price}, Average Cost: {total_average_cost}, Procurement_cost: {total_procurement_cost}, Savings: {savings}")
     
     return average_price, average_procurement_price, total_average_cost, total_procurement_cost, savings
+
