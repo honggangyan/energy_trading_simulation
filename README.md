@@ -1,10 +1,10 @@
 # Energy Trading Simulation
 
-An simulation for optimizing electricity procurement strategies in utility companies.
+Simulations for optimizing electricity procurement strategies in utility companies.
 
 ## Overview
 
-This project simulates electricity procurement for a utility company, aiming to analyze the dynamic stop loss strategies for different price trends.
+This project simulates electricity procurement for a utility company, aiming to analyze the dynamic stop loss strategy for different price trends.
 
 ## Key Features
 
