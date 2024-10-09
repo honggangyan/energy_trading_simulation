@@ -33,7 +33,7 @@ def dynamic_stop_loss(df, start_date, end_date, spread):
             current_date = next_date
         else:
             procurement_date, procurement_price = next_date, next_date_price
-            # plot_procurement(df, start_date, end_date, procurement_date)
+            plot_procurement(df, start_date, end_date, procurement_date)
             return procurement_date, procurement_price
 
     procurement_date = end_date
@@ -73,9 +73,9 @@ def quarterly_procurement(df, spread):
     
     # Print results for each quarter
     
-    # for quarter, result in procurement_results.items():
-    #     print(
-    #         f"{quarter}: Procurement Date - {result['procurement_date'].date()}, Procurement Price - {result['procurement_price']}"
-    #     )
+    for quarter, result in procurement_results.items():
+        print(
+            f"{quarter}: Procurement Date - {result['procurement_date'].date()}, Procurement Price - {result['procurement_price']}"
+        )
             
     return procurement_results

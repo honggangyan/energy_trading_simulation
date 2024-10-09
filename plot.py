@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 from scipy.stats import norm
 
+
 def plot_normal_distribution(trend, volatility):
     """
     :param trend: mean
@@ -75,7 +76,7 @@ def plot_procurement(df, start_date, end_date, procurement_date):
     ax.xaxis.set_minor_locator(mdates.DayLocator())
 
     # Rotate the major tick labels for better readability
-    plt.xticks(rotation=45)
+    plt.xticks(rotation=45, ha='right')  # Add ha='right' for better alignment
 
     plt.margins(0)
 
@@ -126,13 +127,14 @@ def plot_all_procurement(df, procurement_results):
     for procurement_date, procurement_price in zip(
         procurement_dates, procurement_prices
     ):
-        plt.text(
-            procurement_date,
-            procurement_price + 0.5,
+        plt.annotate(
             f"{procurement_date.date()}\n{procurement_price:.2f}",
+            (procurement_date, procurement_price),
+            xytext=(0, 5),
+            textcoords='offset points',
+            ha='center',
+            va='bottom',
             fontsize=9,
-            verticalalignment="bottom",
-            horizontalalignment="center",
         )
 
     # Add title and labels
@@ -147,23 +149,27 @@ def plot_all_procurement(df, procurement_results):
     plt.tight_layout()
     plt.show()
 
-def plot_simulations(df_simulations, simulations):
+def plot_simulations(df_simulations, simulations, num_to_display=None):
     """
     Plots the Monte Carlo simulated electricity price paths.
     
     Parameters:
         df_simulations (pd.DataFrame): DataFrame containing the simulated price paths.
-        simulations (int): The number of simulations to display.
+        simulations (int): The total number of simulations.
+        num_to_display (int, optional): The number of simulations to display. If None, all simulations are displayed.
     """
     # Create the plot
     plt.figure(figsize=(20, 6))
     
+    # Determine how many simulations to plot
+    num_to_plot = num_to_display if num_to_display is not None else simulations
+    
     # Plot each simulation
-    for i in range(simulations):
-        plt.plot(df_simulations.index, df_simulations.iloc[:, i], lw=1)
+    for i in range(min(num_to_plot, df_simulations.shape[1])):
+        plt.plot(df_simulations.index, df_simulations.iloc[:, i], lw=1, alpha=0.5)
         
     # Set plot title and labels
-    plt.title(f'Monte Carlo Simulated Electricity Price Paths ({simulations} Simulations)')
+    plt.title(f'Monte Carlo Simulated Electricity Price Paths ({num_to_plot} of {simulations} Simulations)')
     plt.xlabel('Date')
     plt.ylabel('Price (EUR/MWh)')
     plt.grid(True)
