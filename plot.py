@@ -6,22 +6,13 @@ import numpy as np
 from scipy.stats import norm
 
 
-def plot_normal_distribution(trend, volatility):
-    """
-    :param trend: mean
-    :param volatility: std
-    """
-    mean = trend  
-    std_dev = volatility  
-
-    # X
-    x = np.linspace(mean - 4 * std_dev, mean + 4 * std_dev, 1000)
-    # Y
-    y = norm.pdf(x, mean, std_dev)
+def plot_normal_distribution(mean, std_dev):
+    x_values = np.linspace(mean - 4 * std_dev, mean + 4 * std_dev, 1000)
+    y_values = norm.pdf(x_values, mean, std_dev)
 
     # plot
     plt.figure(figsize=(8, 6))
-    plt.plot(x, y, label='Normal Distribution', color='blue')
+    plt.plot(x_values, y_values, label='Normal Distribution', color='blue')
     plt.title('Normal Distribution with Trend and Volatility')
     plt.xlabel('Value')
     plt.ylabel('Probability Density')

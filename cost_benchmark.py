@@ -5,6 +5,8 @@ import pandas as pd
 
 
 def cost_benchmark(trend, df, procurement_results):
+    if df.empty or not procurement_results:
+        raise ValueError("Empty dataframe or procurement results")
     
     procurement_price = [
         result["procurement_price"] for result in procurement_results.values()
